@@ -1,0 +1,19 @@
+{
+  "name": "codeqltree",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeQLTree/CodeQLTree.git"
+  },
+  "keywords": [],
+  "author": "Boris CHERRY, Maxime ANDRÉ",
+  "license": "MIT",
+  "dependencies": {
+    "antlr4": "^4.13.1-patch-1"
+  }
+}
