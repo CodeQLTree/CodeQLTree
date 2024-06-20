@@ -552,5 +552,4 @@ CodeQLVisitor.prototype.visitQldoc = function(ctx) {
 };
 
 
-
 exports.CodeQLVisitor = CodeQLVisitor;

@@ -1,7 +1,11 @@
-const antlr4 = require('antlr4');
-const CodeQLVisitor = require('./grammar/CodeQLVisitor').CodeQLVisitor;
+const antlr4 = require('antlr4/index');
+const CodeQLVisitor = require('../grammar/CodeQLVisitor').CodeQLVisitor;
 
 class CodeQLTreeVisitor extends CodeQLVisitor {
+
+    constructor(props) {
+        super(props);
+    }
 
     visitModule(ctx) {
         console.log("Visiting a module: " + ctx.modulename().getText());
@@ -62,3 +66,5 @@ class CodeQLTreeVisitor extends CodeQLVisitor {
 
     // Add more visit methods here for each rule you want to handle
 }
+
+exports.CodeQLTreeVisitor = CodeQLTreeVisitor;

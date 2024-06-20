@@ -15,16 +15,6 @@ function parseQLCode(code) {
 }
 
 // Example usage
-const codeQLFile = `
-module Example {
-    import some.module as alias;
-    predicate foo() {
-        return true;
-    }
-    class Bar extends Baz {
-        field x : int;
-    }
-}
-`;
+const codeQLFile = ``; // TODO
 
 parseQLCode(codeQLFile);
