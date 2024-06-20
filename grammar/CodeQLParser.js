@@ -2,6 +2,8 @@
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
 var CodeQLListener = require('./CodeQLListener').CodeQLListener;
+var CodeQLVisitor = require('./CodeQLVisitor').CodeQLVisitor;
+
 var grammarFileName = "CodeQL.g4";
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
@@ -1002,6 +1004,14 @@ QlContext.prototype.exitRule = function(listener) {
 	}
 };
 
+QlContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitQl(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -1090,6 +1100,14 @@ ModuleContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitModule(this);
 	}
+};
+
+ModuleContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitModule(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -1204,6 +1222,14 @@ ParametersContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ParametersContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitParameters(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -1289,6 +1315,14 @@ ImplementsClauseContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitImplementsClause(this);
 	}
+};
+
+ImplementsClauseContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitImplementsClause(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -1427,6 +1461,14 @@ ModuleBodyContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ModuleBodyContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitModuleBody(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -1536,6 +1578,14 @@ ImportDefContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ImportDefContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitImportDef(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -1612,6 +1662,14 @@ QualIdContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitQualId(this);
 	}
+};
+
+QualIdContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitQualId(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -1712,6 +1770,14 @@ ImportModuleExprContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitImportModuleExpr(this);
 	}
+};
+
+ImportModuleExprContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitImportModuleExpr(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -1817,6 +1883,14 @@ ArgumentsContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ArgumentsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitArguments(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -1903,6 +1977,14 @@ ArgumentContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitArgument(this);
 	}
+};
+
+ArgumentContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitArgument(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -1996,6 +2078,14 @@ SignatureContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SignatureContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitSignature(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -2081,6 +2171,14 @@ PredicateSignatureContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitPredicateSignature(this);
 	}
+};
+
+PredicateSignatureContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitPredicateSignature(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -2185,6 +2283,14 @@ TypeSignatureContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitTypeSignature(this);
 	}
+};
+
+TypeSignatureContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitTypeSignature(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -2332,6 +2438,14 @@ ModuleSignatureContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ModuleSignatureContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitModuleSignature(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -2457,6 +2571,14 @@ ModuleSignatureBodyContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ModuleSignatureBodyContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitModuleSignatureBody(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -2551,6 +2673,14 @@ SignaturePredicateContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SignaturePredicateContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitSignaturePredicate(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -2633,6 +2763,14 @@ DefaultPredicateContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitDefaultPredicate(this);
 	}
+};
+
+DefaultPredicateContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitDefaultPredicate(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -2741,6 +2879,14 @@ SignatureTypeContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitSignatureType(this);
 	}
+};
+
+SignatureTypeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitSignatureType(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -2863,6 +3009,14 @@ SelectContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SelectContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitSelect(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -2964,6 +3118,14 @@ As_exprsContext.prototype.exitRule = function(listener) {
 	}
 };
 
+As_exprsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitAs_exprs(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -3038,6 +3200,14 @@ As_exprContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitAs_expr(this);
 	}
+};
+
+As_exprContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitAs_expr(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -3117,6 +3287,14 @@ OrderbysContext.prototype.exitRule = function(listener) {
 	}
 };
 
+OrderbysContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitOrderbys(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -3187,6 +3365,14 @@ OrderbyContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitOrderby(this);
 	}
+};
+
+OrderbyContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitOrderby(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -3276,6 +3462,14 @@ PredicateContext.prototype.exitRule = function(listener) {
 	}
 };
 
+PredicateContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitPredicate(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -3355,6 +3549,14 @@ AnnotationsContext.prototype.exitRule = function(listener) {
 	}
 };
 
+AnnotationsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitAnnotations(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -3425,6 +3627,14 @@ AnnotationContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitAnnotation(this);
 	}
+};
+
+AnnotationContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitAnnotation(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -3509,6 +3719,14 @@ SimpleAnnotationContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SimpleAnnotationContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitSimpleAnnotation(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -3581,6 +3799,14 @@ ArgsAnnotationContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitArgsAnnotation(this);
 	}
+};
+
+ArgsAnnotationContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitArgsAnnotation(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -3712,6 +3938,14 @@ HeadContext.prototype.exitRule = function(listener) {
 	}
 };
 
+HeadContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitHead(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -3827,6 +4061,14 @@ OptbodyContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitOptbody(this);
 	}
+};
+
+OptbodyContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitOptbody(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -3987,6 +4229,14 @@ ClassDefContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ClassDefContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitClassDef(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -4125,6 +4375,14 @@ MemberContext.prototype.exitRule = function(listener) {
 	}
 };
 
+MemberContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitMember(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -4216,6 +4474,14 @@ CharacterContext.prototype.exitRule = function(listener) {
 	}
 };
 
+CharacterContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitCharacter(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -4304,6 +4570,14 @@ FieldContext.prototype.exitRule = function(listener) {
 	}
 };
 
+FieldContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitField(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -4382,6 +4656,14 @@ ModuleExprContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitModuleExpr(this);
 	}
+};
+
+ModuleExprContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitModuleExpr(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -4496,6 +4778,14 @@ ModuleSignatureExprContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ModuleSignatureExprContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitModuleSignatureExpr(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -4584,6 +4874,14 @@ SignatureExprContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitSignatureExpr(this);
 	}
+};
+
+SignatureExprContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitSignatureExpr(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -4680,6 +4978,14 @@ TypeContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitType(this);
 	}
+};
+
+TypeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitType(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -4797,6 +5103,14 @@ ExprsContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ExprsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitExprs(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -4899,6 +5213,14 @@ AliasContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitAlias(this);
 	}
+};
+
+AliasContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitAlias(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -5046,6 +5368,14 @@ Var_declsContext.prototype.exitRule = function(listener) {
 	}
 };
 
+Var_declsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitVar_decls(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -5128,6 +5458,14 @@ Var_declContext.prototype.exitRule = function(listener) {
 	}
 };
 
+Var_declContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitVar_decl(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -5195,6 +5533,14 @@ FormulaContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitFormula(this);
 	}
+};
+
+FormulaContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitFormula(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -5283,6 +5629,14 @@ IfthenContext.prototype.exitRule = function(listener) {
 	}
 };
 
+IfthenContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitIfthen(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -5357,6 +5711,14 @@ ImpliesContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitImplies(this);
 	}
+};
+
+ImpliesContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitImplies(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -5438,6 +5800,14 @@ DisjunctionContext.prototype.exitRule = function(listener) {
 	}
 };
 
+DisjunctionContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitDisjunction(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -5517,6 +5887,14 @@ ConjunctionContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ConjunctionContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitConjunction(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -5591,6 +5969,14 @@ NegatedContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitNegated(this);
 	}
+};
+
+NegatedContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitNegated(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -5711,6 +6097,14 @@ ComparisonContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ComparisonContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitComparison(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -5769,6 +6163,14 @@ CompopContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitCompop(this);
 	}
+};
+
+CompopContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitCompop(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -5842,6 +6244,14 @@ InstanceofClauseContext.prototype.exitRule = function(listener) {
 	}
 };
 
+InstanceofClauseContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitInstanceofClause(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -5911,6 +6321,14 @@ InrangeContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitInrange(this);
 	}
+};
+
+InrangeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitInrange(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -6003,6 +6421,14 @@ CallContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitCall(this);
 	}
+};
+
+CallContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitCall(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -6120,6 +6546,14 @@ ClosureContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ClosureContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitClosure(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -6192,6 +6626,14 @@ ExprContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitExpr(this);
 	}
+};
+
+ExprContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitExpr(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -6282,6 +6724,14 @@ PrimaryContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitPrimary(this);
 	}
+};
+
+PrimaryContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitPrimary(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -6398,6 +6848,14 @@ BasePrimaryContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitBasePrimary(this);
 	}
+};
+
+BasePrimaryContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitBasePrimary(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -6537,6 +6995,14 @@ PostfixContext.prototype.exitRule = function(listener) {
 	}
 };
 
+PostfixContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitPostfix(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -6608,6 +7074,14 @@ UnopContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitUnop(this);
 	}
+};
+
+UnopContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitUnop(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -6683,6 +7157,14 @@ CastContext.prototype.exitRule = function(listener) {
 	}
 };
 
+CastContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitCast(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -6748,6 +7230,14 @@ EparenContext.prototype.exitRule = function(listener) {
 	}
 };
 
+EparenContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitEparen(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -6806,6 +7296,14 @@ DontcareContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitDontcare(this);
 	}
+};
+
+DontcareContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitDontcare(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -6875,6 +7373,14 @@ LiteralContext.prototype.exitRule = function(listener) {
 	}
 };
 
+LiteralContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitLiteral(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -6940,6 +7446,14 @@ VariableContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitVariable(this);
 	}
+};
+
+VariableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitVariable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -7017,6 +7531,14 @@ Super_exprContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitSuper_expr(this);
 	}
+};
+
+Super_exprContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitSuper_expr(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -7102,6 +7624,14 @@ Postfix_castContext.prototype.exitRule = function(listener) {
 	}
 };
 
+Postfix_castContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitPostfix_cast(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -7177,6 +7707,14 @@ CallwithresultsContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitCallwithresults(this);
 	}
+};
+
+CallwithresultsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitCallwithresults(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -7316,6 +7854,14 @@ AggregationContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitAggregation(this);
 	}
+};
+
+AggregationContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitAggregation(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -7514,6 +8060,14 @@ Expression_pragmaContext.prototype.exitRule = function(listener) {
 	}
 };
 
+Expression_pragmaContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitExpression_pragma(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -7582,6 +8136,14 @@ Expression_pragma_typeContext.prototype.exitRule = function(listener) {
 	}
 };
 
+Expression_pragma_typeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitExpression_pragma_type(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -7644,6 +8206,14 @@ AggidContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitAggid(this);
 	}
+};
+
+AggidContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitAggid(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -7720,6 +8290,14 @@ AggorderbysContext.prototype.exitRule = function(listener) {
 	}
 };
 
+AggorderbysContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitAggorderbys(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -7790,6 +8368,14 @@ AggorderbyContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitAggorderby(this);
 	}
+};
+
+AggorderbyContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitAggorderby(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -7873,6 +8459,14 @@ AnyContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitAny(this);
 	}
+};
+
+AnyContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitAny(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -7974,6 +8568,14 @@ RangeContext.prototype.exitRule = function(listener) {
 	}
 };
 
+RangeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitRange(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -8046,6 +8648,14 @@ SetliteralContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitSetliteral(this);
 	}
+};
+
+SetliteralContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitSetliteral(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -8139,6 +8749,14 @@ SimpleIdContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SimpleIdContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitSimpleId(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -8211,6 +8829,14 @@ ModulenameContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ModulenameContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitModulename(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -8268,6 +8894,14 @@ ModuleSignatureNameContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitModuleSignatureName(this);
 	}
+};
+
+ModuleSignatureNameContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitModuleSignatureName(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -8329,6 +8963,14 @@ ClassnameContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ClassnameContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitClassname(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -8386,6 +9028,14 @@ DbasetypeContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitDbasetype(this);
 	}
+};
+
+DbasetypeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitDbasetype(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -8449,6 +9099,14 @@ PredicateRefContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitPredicateRef(this);
 	}
+};
+
+PredicateRefContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitPredicateRef(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -8520,6 +9178,14 @@ PredicateNameContext.prototype.exitRule = function(listener) {
 	}
 };
 
+PredicateNameContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitPredicateName(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -8579,6 +9245,14 @@ ParameterNameContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ParameterNameContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitParameterName(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -8636,6 +9310,14 @@ VarnameContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitVarname(this);
 	}
+};
+
+VarnameContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitVarname(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -8699,6 +9381,14 @@ LiteralIdContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitLiteralId(this);
 	}
+};
+
+LiteralIdContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitLiteralId(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -8815,6 +9505,14 @@ LowerIdContext.prototype.exitRule = function(listener) {
 	}
 };
 
+LowerIdContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitLowerId(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -8927,6 +9625,14 @@ UpperIdContext.prototype.exitRule = function(listener) {
 	}
 };
 
+UpperIdContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitUpperId(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -9007,6 +9713,14 @@ AtLowerIdContext.prototype.exitRule = function(listener) {
 	}
 };
 
+AtLowerIdContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitAtLowerId(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -9063,6 +9777,14 @@ QldocContext.prototype.exitRule = function(listener) {
     if(listener instanceof CodeQLListener ) {
         listener.exitQldoc(this);
 	}
+};
+
+QldocContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CodeQLVisitor ) {
+        return visitor.visitQldoc(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
