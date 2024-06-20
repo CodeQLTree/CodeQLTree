@@ -225,4 +225,3 @@ parameterName ::= simpleId
 varname ::= lowerId
 
 literalId ::= lowerId | atLowerId | "any" | "none"
-
