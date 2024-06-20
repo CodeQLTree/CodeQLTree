@@ -14,6 +14,6 @@
   "author": "Boris CHERRY, Maxime ANDRÉ",
   "license": "MIT",
   "dependencies": {
-    "antlr4": "^4.13.1-patch-1"
+    "antlr4": "^4.8.0"
   }
 }

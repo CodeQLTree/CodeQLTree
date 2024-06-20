@@ -1,7 +1,7 @@
-const antlr4 = require('antlr4');
-const CodeQLLexer = require('./grammar/CodeQLLexer.js');
-const CodeQLParser = require('./grammar/CodeQLParser.js');
-const CodeQLTreeVisitor = require('./helper/CodeQLTreeVisitor.helper.js');
+const antlr4 = require('antlr4/index');
+const CodeQLLexer = require('./grammar/CodeQLLexer.js').CodeQLLexer;
+const CodeQLParser = require('./grammar/CodeQLParser.js').CodeQLParser;
+const CodeQLTreeVisitor = require('./helper/CodeQLTreeVisitor.helper.js').CodeQLTreeVisitor;
 
 function parseQLCode(code) {
     const chars = new antlr4.InputStream(code);

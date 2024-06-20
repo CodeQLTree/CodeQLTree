@@ -1,7 +1,7 @@
 const antlr4 = require('antlr4');
-const CodeQLVisitor = require('grammar/CodeQLVisitor').CodeQLVisitor;
+const CodeQLVisitor = require('./grammar/CodeQLVisitor').CodeQLVisitor;
 
-export class CodeQLTreeVisitor extends CodeQLVisitor {
+class CodeQLTreeVisitor extends CodeQLVisitor {
 
     visitModule(ctx) {
         console.log("Visiting a module: " + ctx.modulename().getText());
