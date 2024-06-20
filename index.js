@@ -8,13 +8,14 @@ function parseQLCode(code) {
     const lexer = new CodeQLLexer(chars);
     const tokens = new antlr4.CommonTokenStream(lexer);
     const parser = new CodeQLParser(tokens);
-    const tree = parser.ql(); // Grammar entry point
+    const tree = parser.ql();
 
     const visitor = new CodeQLTreeVisitor();
-    visitor.visit(tree); // Visit the parse tree
+    visitor.visit(tree);
 }
 
-// Example usage
-const codeQLFile = ``; // TODO
+//  Code
+const codeQLFile = `
+`; // TODO
 
 parseQLCode(codeQLFile);

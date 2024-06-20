@@ -3,68 +3,33 @@ const CodeQLVisitor = require('../grammar/CodeQLVisitor').CodeQLVisitor;
 
 class CodeQLTreeVisitor extends CodeQLVisitor {
 
-    constructor(props) {
-        super(props);
-    }
-
     visitModule(ctx) {
-        console.log("Visiting a module: " + ctx.modulename().getText());
-        this.visitAnnotations(ctx.annotation());
-        return this.visitModuleBody(ctx.moduleBody());
-    }
-
-    visitModuleBody(ctx) {
-        console.log("Visiting module body");
-        return ctx.children.map(child => this.visit(child));
-    }
-
-    visitImport(ctx) {
-        console.log("Visiting an import: " + ctx.importModuleExpr().getText());
-        if (ctx.modulename()) {
-            console.log("Imported as: " + ctx.modulename().getText());
-        }
+        return this.visitChildren(ctx);
     }
 
     visitPredicate(ctx) {
-        console.log("Visiting a predicate: " + ctx.head().predicateName().getText());
-        if (ctx.optbody()) {
-            console.log("With body: " + ctx.optbody().getText());
-        }
+        return this.visitChildren(ctx);
     }
 
-    visitClassDecl(ctx) {
-        console.log("Visiting a class: " + ctx.classname().getText());
-        if (ctx.annotations()) {
-            console.log("With annotations: " + ctx.annotations().getText());
-        }
-        if (ctx.member()) {
-            ctx.member().forEach(member => this.visit(member));
-        }
+    visitClassDef(ctx) {
+        return this.visitChildren(ctx);
     }
 
-    visitAlias(ctx) {
-        console.log("Visiting an alias");
-        if (ctx.literalId()) {
-            console.log("Alias name: " + ctx.literalId().getText());
-        }
-        if (ctx.predicateRef()) {
-            console.log("Refers to predicate: " + ctx.predicateRef().getText());
-        }
+    visitImportDef(ctx) {
+        console.log('Visiting import:', ctx.importModuleExpr().getText());
+
+        return this.visitChildren(ctx);
     }
 
-    visitAnnotations(ctx) {
-        if (ctx && ctx.length > 0) {
-            ctx.forEach(annotation => {
-                if (annotation.simpleAnnotation()) {
-                    console.log("Annotation: " + annotation.simpleAnnotation().getText());
-                } else if (annotation.argsAnnotation()) {
-                    console.log("Annotation with args: " + annotation.argsAnnotation().getText());
-                }
-            });
-        }
+    visitImportModuleExpr(ctx){
+        return this.visitChildren(ctx);
     }
 
-    // Add more visit methods here for each rule you want to handle
+    visitSelect(ctx) {
+        return this.visitChildren(ctx);
+    }
+
+    // Other methods here ...
 }
 
 exports.CodeQLTreeVisitor = CodeQLTreeVisitor;
