@@ -1,4 +1,3 @@
-// Generated with ChatGPT4o from CodeQLBNFSpecification.bnf with debugging
 grammar CodeQL;
 
 ql                : qldoc? moduleBody ;
@@ -6,9 +5,9 @@ module            : annotation* 'module' modulename parameters? implementsClause
 parameters        : '<' signatureExpr parameterName (',' signatureExpr parameterName)* '>' ;
 implementsClause  : 'implements' moduleSignatureExpr (',' moduleSignatureExpr)* ;
 moduleBody        : (importDef | predicate | classDef | module | alias | select)* ;
-importDef         : annotations 'import' importModuleExpr ('as' modulename)? ;
-qualId            : simpleId | qualId '.' simpleId ;
-importModuleExpr  : qualId | importModuleExpr '::' modulename arguments? ;
+importDef         : annotations 'import' importModuleExpr ('as' modulename)? NEWLINE;
+qualId            : simpleId ('.' simpleId)* ;
+importModuleExpr  : qualId ('::' modulename arguments?)? ;
 arguments         : '<' argument (',' argument)* '>' ;
 argument          : moduleExpr | type | predicateRef '/' INT ;
 signature         : predicateSignature | typeSignature | moduleSignature ;
@@ -95,7 +94,7 @@ any               : 'any' '(' var_decls ('|' (formula)? ('|' expr)?)? ')' ;
 range             : '[' expr '..' expr ']' ;
 setliteral        : '[' expr (',' expr)* ','? ']' ;
 simpleId          : lowerId | upperId ;
-modulename        : simpleId ;
+modulename        : lowerId | upperId ;
 moduleSignatureName : upperId ;
 classname         : upperId ;
 dbasetype         : atLowerId ;
@@ -109,8 +108,8 @@ LOWERCASE_LETTER  : [a-z] ;
 UPPERCASE_LETTER  : [A-Z] ;
 DIGIT             : [0-9] ;
 
-lowerId           : LOWERCASE_LETTER (LOWERCASE_LETTER | UPPERCASE_LETTER | DIGIT | '_')* ;
-upperId           : UPPERCASE_LETTER (LOWERCASE_LETTER | UPPERCASE_LETTER | DIGIT | '_')* ;
+lowerId           : LOWERCASE_LETTER (LOWERCASE_LETTER | UPPERCASE_LETTER | DIGIT | '_')*;
+upperId           : UPPERCASE_LETTER (LOWERCASE_LETTER | UPPERCASE_LETTER | DIGIT | '_')*;
 atLowerId         : '@' lowerId ;
 
 QSTRING : '"' ('\\' . | ~('\\' | '"'))* '"' ;
@@ -118,7 +117,8 @@ STRING  : '\'' ('\\' . | ~('\\' | '\''))* '\'' ;
 INT     : DIGIT+ ;
 FLOAT   : DIGIT+ '.' DIGIT* | '.' DIGIT+ ;
 WS      : [ \t\r\n]+ -> skip ;
-COMMENT : '/*' .*? '*/' -> skip ;
+NEWLINE : '\r'? '\n';
+COMMENT : '/**' .*? '*/' -> skip ;
 LINE_COMMENT : '//' ~[\r\n]* -> skip ;
 
-qldoc : '/*' .*? '*/' ;
+qldoc : '/**' .*? '*/' ;

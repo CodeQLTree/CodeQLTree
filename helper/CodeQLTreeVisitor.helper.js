@@ -4,7 +4,23 @@ const CodeQLVisitor = require('../grammar/CodeQLVisitor').CodeQLVisitor;
 class CodeQLTreeVisitor extends CodeQLVisitor {
 
     visitModule(ctx) {
-        return this.visitChildren(ctx);
+        console.log("Visiting a module: " + ctx.modulename().getText());
+        this.visitAnnotations(ctx.annotation());
+        return this.visitModuleBody(ctx.moduleBody());
+    }
+
+    visitModuleBody(ctx) {
+        console.log("Visiting m module body");
+        //console.log(ctx.children)
+        return ctx.children.map(child => this.visit(child));
+    }
+
+    visitImportDef(ctx) {
+        console.log("Visiting my import: " + ctx.importModuleExpr().getText());
+        console.log(ctx)
+        if (ctx.modulename()) {
+            console.log("Imported as: " + ctx.modulename().getText());
+        }
     }
 
     visitPredicate(ctx) {
