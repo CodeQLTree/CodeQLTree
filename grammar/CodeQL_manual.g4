@@ -2,11 +2,12 @@ grammar CodeQL_manual;
 
 ql: moduleBody;
 
+// moduleBody: (import | predicate | class | module | alias | select)*; 
 moduleBody: select;
 select: ('from' variableDeclarations)? 'select' asExprs ('order' 'by' orderBys);
 // (where formula)?
 
-variableDeclarations: singleVariableDeclaration (',' singleVariableDeclaration);
+variableDeclarations: singleVariableDeclaration (',' singleVariableDeclaration)*;
 singleVariableDeclaration: type lowerId;
 
 // formula: parenthesisFormula
@@ -42,7 +43,6 @@ className: upperId;
 databaseType: atLowerId;
     
 
-// moduleBody: (import | predicate | class | module | alias | select)*; 
 atLowerId: '@'LOWERCASE_LETTER(LOWERCASE_LETTER|UPPERCASE_LETTER|DIGIT|'_')*;
 lowerId: LOWERCASE_LETTER(LOWERCASE_LETTER|UPPERCASE_LETTER|DIGIT|'_')*;
 upperId: UPPERCASE_LETTER(LOWERCASE_LETTER|UPPERCASE_LETTER|DIGIT|'_')*;
